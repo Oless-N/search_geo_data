@@ -1,10 +1,10 @@
-from pydantic import BaseModel, validator, confloat
+from pydantic import BaseModel, validator, confloat, conint
 
 
 class NearbySearchQuery(BaseModel):
     lon: confloat(ge=-180, le=180)
     lat: confloat(ge=-90, le=90)
-    radius: confloat(gt=0, le=22000)
+    radius: conint(gt=0, le=22000)
 
     @validator("radius")
     def validate_radius(cls, value):
@@ -21,3 +21,15 @@ class SearchByRegion(BaseModel):
         if value == "":
             raise ValueError("Region must be provided")
         return value
+
+
+class Vertex(BaseModel):
+    lon: confloat(ge=-180, le=180)
+    lat: confloat(ge=-90, le=90)
+
+
+class ParallelogramQuery(BaseModel):
+    vertex1: Vertex
+    vertex2: Vertex
+    vertex3: Vertex
+    vertex4: Vertex
