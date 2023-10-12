@@ -1,6 +1,6 @@
 root_packages = controllers	tools views	main.py	config.py test
 
-run:
+run_db:
 	docker-compose -f docker-compose-db.yaml down
 	docker-compose -f docker-compose-db.yaml up -d
 
@@ -12,9 +12,6 @@ postgis_bash:
 
 run:
 	uvicorn main:app --reload --port 8989
-
-test:
-	 pytest -s -vv test/test_search_endpoints.py
 
 lint:
 	$(foreach package,$(root_packages),flake8 --show-source $(package) &&) true
