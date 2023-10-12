@@ -4,7 +4,12 @@ from gisdatabase import database
 
 
 async def search_by_region(region: str):
-    query = f"""select * from geotable where region='{region}'"""
+    query = f"""
+    select SUM(area_ha) as total_area, 
+    SUM(productivity * area_ha) as total_yield, 
+    (SUM(productivity * area_ha) / SUM(area_ha)) as avg_yield_per_ha 
+    from geotable where region='{region}'
+"""
 
     results = await database.fetch_all(query)
 

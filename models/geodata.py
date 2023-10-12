@@ -13,7 +13,7 @@ class GeoData(Base):
     area_ha = Column(Float)
     crop = Column(String)
     history = Column(JSONB)
-    productivity = Column(String)
+    productivity = Column(Float)
     region = Column(String)
     score = Column(String)
     type = Column(String)
