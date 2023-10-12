@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "dd565ba3-9b67-49c5-bcbd-16d841986664",
+		"name": "geodata",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6637676"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8989/api/v1/search_nearby",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"lon\": 5.792218,\n  \"lat\": 43.735445,\n  \"radius\": 1000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/api/v1/search_nearby",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"api",
+						"v1",
+						"search_nearby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8989/api/v1/search_region",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"region\": \"FR-22\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/api/v1/search_region",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"api",
+						"v1",
+						"search_region"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8989/api/v1/search_quadrangle",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"vertex1\": {\n    \"lon\": 4.612359,\n    \"lat\": 45.934549\n  },\n  \"vertex2\": {\n    \"lon\": 4.612359,\n    \"lat\": 45.934494\n  },\n  \"vertex3\": {\n    \"lon\": 4.612524,\n    \"lat\": 45.934439\n  },\n  \"vertex4\": {\n    \"lon\": 4.612688,\n    \"lat\": 45.934494\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8989/api/v1/search_quadrangle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"api",
+						"v1",
+						"search_quadrangle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8989/api/v1/search_geojson",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"coordinates\": [\n        [\n            -3.1125408,\n            48.3028787\n        ],\n        [\n            -3.1125695,\n            48.3029075\n        ],\n        [\n            -3.1125983,\n            48.3028787\n        ],\n        [\n            -3.1125695,\n            48.30285\n        ],\n        [\n            -3.1125408,\n            48.3028787\n        ]\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8989/api/v1/search_geojson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"api",
+						"v1",
+						"search_geojson"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

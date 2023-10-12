@@ -12,4 +12,4 @@ run:
 	uvicorn main:app --reload --port 8989
 
 test:
-	pytest -s -v  tests/test_search_endpoints.py --fixtures ['main.py']
+	pytest -s -vv test/test_search_endpoints.py

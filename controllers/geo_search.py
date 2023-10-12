@@ -13,7 +13,7 @@ async def search_by_region(region: str):
 
     results = await database.fetch_all(query)
 
-    return {'result': results}
+    return results
 
 
 async def search_location_by_coordinates(

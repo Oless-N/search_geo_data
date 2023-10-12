@@ -31,7 +31,7 @@ async def search_location(query: NearbySearchQuery):
     return {'result': ret}
 
 
-@router.get("/search_MultiPolygon")
+@router.get("/search_multipolygon")
 async def search_geojson(query: GeometryQuery):
     ret = await search_input_geojson(query)
 
