@@ -9,4 +9,3 @@ pytest
 httpx
 asyncpg
 databases[postgresql]
-psycopg2-binary

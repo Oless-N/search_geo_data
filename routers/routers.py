@@ -17,7 +17,7 @@ async def search_location(query: SearchByRegion):
         query.region
     )
 
-    return ret
+    return {'result': ret}
 
 
 @router.get("/search_nearby")
@@ -28,14 +28,14 @@ async def search_location(query: NearbySearchQuery):
         query.radius,
     )
 
-    return ret
+    return {'result': ret}
 
 
 @router.get("/search_MultiPolygon")
 async def search_geojson(query: GeometryQuery):
     ret = await search_input_geojson(query)
 
-    return ret
+    return {'result': ret}
 
 
 @router.get("/search_quadrangle")
@@ -51,5 +51,4 @@ async def search_location(query: ParallelogramQuery):
         query.vertex4.lat,
     )
 
-    return ret
-
+    return {'result': ret}

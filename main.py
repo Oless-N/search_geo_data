@@ -4,6 +4,11 @@ from config import HOST, PORT
 from gisdatabase import database
 from routers import routers
 
+from starlette.testclient import TestClient
+import pytest
+
+
+
 app = FastAPI()
 
 app.include_router(routers.router)
@@ -21,3 +26,9 @@ async def shutdown():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host=HOST, port=PORT)
+
+
+@pytest.fixture(scope="module")
+def test_client():
+    client = TestClient(app)
+    yield client

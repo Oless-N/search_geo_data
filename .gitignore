@@ -18,3 +18,4 @@ __pycache__
 /filestore/
 /tools/fr-subset.geojsons.gz
 /tools/fr-subset.geojsons
+/.pytest_cache/
