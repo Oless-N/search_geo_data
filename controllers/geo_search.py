@@ -5,12 +5,6 @@ from models.geodata import GeoData
 
 
 async def search_by_region(region: str):
-    # query = (
-    #     GeoData.__table__.select()
-    #     .where(
-    #         func.region(region)
-    #     )
-    # )
     query = f"""select * from geotable where region='{region}'"""
 
     results = await database.fetch_all(query)
@@ -23,15 +17,13 @@ async def search_location_by_coordinates(
         lat: float,
         distance: int = 1000):
 
-    query = (
-        GeoData.__table__.select()
-        .where(
-            func.ST_DWithin(
-                GeoData.geometry,
-                func.ST_MakePoint(lon, lat),
-                distance
-            )
-        )
-    )
+    query = f"""
+            SELECT *
+            FROM geotable
+            WHERE ST_DWithin(
+                geometry,
+                ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326)::geography,
+                {distance}
+            );"""
     results = await database.fetch_all(query)
     return results
