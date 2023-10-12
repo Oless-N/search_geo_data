@@ -10,7 +10,7 @@ from geoalchemy2 import Geometry
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-connection_url = "postgresql://postgres_user:geodata1234@127.0.0.1:5444/postgres" # noqa
+connection_url = 'postgresql://postgres_user:geodata1234@127.0.0.1:5444/postgres' # noqa
 engine = create_engine(
     connection_url,
     pool_size=10,
@@ -47,12 +47,12 @@ def geometry_to_ewkt(geom_dict):
     geom_type = geom_dict['type'].upper()
     if geom_type == 'POINT':
         coords = geom_dict['coordinates']
-        return f"SRID=4326;POINT({coords[0]} {coords[1]})"
+        return f'SRID=4326;POINT({coords[0]} {coords[1]})'
     elif geom_type == 'MULTIPOLYGON':
         polys = ','.join([','.join(
             [f"(({','.join([' '.join(map(str, point)) for point in points])}))"
              for points in poly]) for poly in geom_dict['coordinates']])
-        return f"SRID=4326;MULTIPOLYGON({polys})"
+        return f'SRID=4326;MULTIPOLYGON({polys})'
 
 count = 0
 with engine.connect() as connection:
@@ -80,4 +80,4 @@ with engine.connect() as connection:
 
     session.commit()
 
-print(f"total docs: {count}", "Data imported successfully!")
+print(f'total docs: {count}', 'Data imported successfully!')

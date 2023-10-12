@@ -17,9 +17,10 @@ async def search_by_region(region: str):
 
 
 async def search_location_by_coordinates(
-        lon: float,
-        lat: float,
-        distance: int = 1000):
+    lon: float,
+    lat: float,
+    distance: int = 1000,
+):
 
     query = f"""
             SELECT *
@@ -35,26 +36,27 @@ async def search_location_by_coordinates(
 
 async def search_input_geojson(coordinates):
     json_coord = {
-        "type": "MultiPolygon",
-        "coordinates": [
+        'type': 'MultiPolygon',
+        'coordinates': [
             [
                 [
-                    *coordinates.coordinates
-                ]
-            ]
-        ]
+                    *coordinates.coordinates,
+                ],
+            ],
+        ],
     }
 
     query = f"""
-            SELECT * 
-                FROM geotable 
-                WHERE ST_Intersects(
-                    geometry, 
-                    ST_GeomFromGeoJSON('{json.dumps(json_coord)}')
-                );
-            """
+        SELECT * 
+            FROM geotable 
+            WHERE ST_Intersects(
+                geometry, 
+                ST_GeomFromGeoJSON('{json.dumps(json_coord)}')
+            );
+        """
 
     results = await database.fetch_all(query)
+
     return results
 
 
@@ -84,6 +86,8 @@ async def search_quadrangle(
                 )
             ),
             geometry
-        );"""
+        );
+    """
     results = await database.fetch_all(query)
+
     return results

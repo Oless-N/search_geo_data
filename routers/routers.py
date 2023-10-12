@@ -11,7 +11,7 @@ from schemas.queries import SearchByRegion, NearbySearchQuery, \
 router = APIRouter(prefix=prefix)
 
 
-@router.get("/search_region")
+@router.get('/search_region')
 async def search_location(query: SearchByRegion):
     ret = await search_by_region(
         query.region
@@ -20,7 +20,7 @@ async def search_location(query: SearchByRegion):
     return {'result': ret}
 
 
-@router.get("/search_nearby")
+@router.get('/search_nearby')
 async def search_location(query: NearbySearchQuery):
     ret = await search_location_by_coordinates(
         query.lon,
@@ -31,14 +31,14 @@ async def search_location(query: NearbySearchQuery):
     return {'result': ret}
 
 
-@router.get("/search_multipolygon")
+@router.get('/search_multipolygon')
 async def search_geojson(query: GeometryQuery):
     ret = await search_input_geojson(query)
 
     return {'result': ret}
 
 
-@router.get("/search_quadrangle")
+@router.get('/search_quadrangle')
 async def search_location(query: ParallelogramQuery):
     ret = await search_quadrangle(
         query.vertex1.lon,

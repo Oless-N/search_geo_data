@@ -1,4 +1,6 @@
-dbrun:
+root_packages = controllers	tools views	main.py	config.py test
+
+run:
 	docker-compose -f docker-compose-db.yaml down
 	docker-compose -f docker-compose-db.yaml up -d
 
@@ -12,4 +14,8 @@ run:
 	uvicorn main:app --reload --port 8989
 
 test:
-	pytest -s -vv test/test_search_endpoints.py
+	 pytest -s -vv test/test_search_endpoints.py
+
+lint:
+	$(foreach package,$(root_packages),flake8 --show-source $(package) &&) true
+	$(foreach package,$(root_packages),isort --check-only $(package) --diff &&) true
