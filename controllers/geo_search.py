@@ -1,7 +1,6 @@
-from sqlalchemy import func
+import json
 
 from gisdatabase import database
-from models.geodata import GeoData
 
 
 async def search_by_region(region: str):
@@ -25,6 +24,31 @@ async def search_location_by_coordinates(
                 ST_SetSRID(ST_MakePoint({lon}, {lat}), 4326)::geography,
                 {distance}
             );"""
+    results = await database.fetch_all(query)
+    return results
+
+
+async def search_input_geojson(coordinates):
+    json_coord = {
+        "type": "MultiPolygon",
+        "coordinates": [
+            [
+                [
+                    *coordinates.coordinates
+                ]
+            ]
+        ]
+    }
+
+    query = f"""
+            SELECT * 
+                FROM geotable 
+                WHERE ST_Intersects(
+                    geometry, 
+                    ST_GeomFromGeoJSON('{json.dumps(json_coord)}')
+                );
+            """
+
     results = await database.fetch_all(query)
     return results
 

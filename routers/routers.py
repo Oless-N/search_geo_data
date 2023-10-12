@@ -3,9 +3,10 @@ from fastapi import APIRouter
 from config import prefix
 from controllers.geo_search import (
     search_by_region,
-    search_location_by_coordinates, search_quadrangle,
+    search_location_by_coordinates, search_quadrangle, search_input_geojson,
 )
-from schemas.queries import SearchByRegion, NearbySearchQuery, ParallelogramQuery
+from schemas.queries import SearchByRegion, NearbySearchQuery, \
+    ParallelogramQuery, GeometryQuery
 
 router = APIRouter(prefix=prefix)
 
@@ -15,6 +16,7 @@ async def search_location(query: SearchByRegion):
     ret = await search_by_region(
         query.region
     )
+
     return ret
 
 
@@ -25,6 +27,14 @@ async def search_location(query: NearbySearchQuery):
         query.lat,
         query.radius,
     )
+
+    return ret
+
+
+@router.get("/search_MultiPolygon")
+async def search_geojson(query: GeometryQuery):
+    ret = await search_input_geojson(query)
+
     return ret
 
 
@@ -40,5 +50,6 @@ async def search_location(query: ParallelogramQuery):
         query.vertex4.lon,
         query.vertex4.lat,
     )
+
     return ret
 

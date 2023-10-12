@@ -5,7 +5,10 @@ from .base import Base
 
 class GeoData(Base):
     __tablename__ = 'geotable'
-    id = Column(Integer, primary_key=True)
+    id = Column(
+        Integer,
+        primary_key=True,
+    )
     geometry = Column(Geometry(srid=4326))
     area_ha = Column(Float)
     crop = Column(String)

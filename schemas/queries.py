@@ -1,4 +1,5 @@
 from pydantic import BaseModel, validator, confloat, conint
+from typing import Any, List
 
 
 class NearbySearchQuery(BaseModel):
@@ -33,3 +34,7 @@ class ParallelogramQuery(BaseModel):
     vertex2: Vertex
     vertex3: Vertex
     vertex4: Vertex
+
+
+class GeometryQuery(BaseModel):
+    coordinates: List[Any]
