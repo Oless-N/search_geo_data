@@ -1,0 +1,12 @@
+docker-compose
+geojson
+fastapi
+psycopg2-binary
+sqlalchemy
+geoalchemy2
+uvicorn
+pytest
+httpx
+asyncpg
+databases[postgresql]
+psycopg2-binary
