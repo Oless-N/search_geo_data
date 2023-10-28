@@ -3,6 +3,7 @@ from sqlalchemy.dialects.postgresql import JSONB
 from geoalchemy2 import Geometry
 from .base import Base
 
+
 class GeoData(Base):
     __tablename__ = 'geotable'
     id = Column(
