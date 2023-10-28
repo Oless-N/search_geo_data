@@ -8,8 +8,6 @@
 
 - Python 3.
 - PostgreSQL + PostGIS.
-- Dockerfile (Solution should be wrapped in a docker container).
-- Docker-compose for local testing.
 - No restrictions for frameworks and libraries. You can use anything that seems reasonable for this task.
 - API documentation that shows how to use it.
 - All endpoints should work effectively on any amount of data. The base assumption is that you should store all-world data for at least 4 years. If you have an idea of an interesting but time-consuming implementation, just describe it in words.
