@@ -16,6 +16,5 @@ backups/*
 __pycache__
 /logs/
 /filestore/
-/tools/fr-subset.geojsons.gz
 /tools/fr-subset.geojsons
 /.pytest_cache/
